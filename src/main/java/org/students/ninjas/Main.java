@@ -18,7 +18,6 @@ public class Main {
         MessageRepository messageRepository = new MessageRepositoryImpl();
 
         User user1 = (User) BaseEntityFactory.getBaseEntity(new UserFactory(
-                LocalDateTime.now(),
                 "Miroslav",
                 "Vetrov",
                 "miroslav.vetrov2003@gmail.com",
@@ -28,7 +27,6 @@ public class Main {
                 true));
 
         User user2 = (User) BaseEntityFactory.getBaseEntity(new UserFactory(
-                LocalDateTime.now(),
                 "Semion",
                 "Dubrovski",
                 "siemion@gmail.com",
@@ -38,7 +36,6 @@ public class Main {
                 true));
 
         Message message = (Message) BaseEntityFactory.getBaseEntity(new MessageFactory(
-                LocalDateTime.now(),
                 "Send me some money",
                 user1,
                 user2,

@@ -2,13 +2,15 @@ package org.students.ninjas.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type User extended from BaseEntity
+ */
 @Getter
 @Setter
-public class User extends BaseEntity{
+public class User extends BaseEntity {
     private String firstName;
     private String lastName;
     private String email;
@@ -17,8 +19,18 @@ public class User extends BaseEntity{
     private LocalDateTime lastOnline;
     private boolean isOnline;
 
-    public User(LocalDateTime createdAt, String firstName, String lastName, String email, String username, String phoneNumber, LocalDateTime lastOnline, boolean isOnline) {
-        super(createdAt);
+    /**
+     * Instantiates a new User.
+     *
+     * @param firstName   the first name
+     * @param lastName    the last name
+     * @param email       the email
+     * @param username    the username
+     * @param phoneNumber the phone number
+     * @param lastOnline  the last online
+     * @param isOnline    the is online
+     */
+    public User(String firstName, String lastName, String email, String username, String phoneNumber, LocalDateTime lastOnline, boolean isOnline) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

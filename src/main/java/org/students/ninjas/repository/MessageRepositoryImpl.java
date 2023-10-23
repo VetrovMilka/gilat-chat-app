@@ -4,8 +4,14 @@ import org.students.ninjas.entity.Message;
 
 import java.util.HashMap;
 
-public class MessageRepositoryImpl implements MessageRepository{
+/**
+ * The type Message repository.
+ */
+public class MessageRepositoryImpl implements MessageRepository {
 
+    /**
+     * The database mock implemented as HashMap.
+     */
     private static final HashMap<Integer, Message> messages = new HashMap<>();
     private static int id = 0;
 
@@ -19,6 +25,9 @@ public class MessageRepositoryImpl implements MessageRepository{
         return messages.remove(id);
     }
 
+    /**
+     * Adding Message to the mock database incrementing id
+     */
     @Override
     public Message addMessage(Message message) {
         ++id;

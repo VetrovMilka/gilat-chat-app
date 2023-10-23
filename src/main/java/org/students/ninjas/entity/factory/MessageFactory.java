@@ -7,15 +7,18 @@ import org.students.ninjas.entity.User;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Message factory creating a Message entity
+ */
 @AllArgsConstructor
 public class MessageFactory implements AbstractBaseEntityFactory {
-    private LocalDateTime createdAt;
     private String content;
     private User sender;
     private User receiver;
     private LocalDateTime seenAt;
+
     @Override
     public BaseEntity createEntity() {
-        return new Message(createdAt, content, sender, receiver, seenAt);
+        return new Message(content, sender, receiver, seenAt);
     }
 }
