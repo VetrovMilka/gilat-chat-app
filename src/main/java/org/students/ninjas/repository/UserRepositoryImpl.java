@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class UserRepositoryImpl implements UserRepository{
 
     private static final HashMap<Integer, User> users = new HashMap<>();
+    private static int id = 0;
     @Override
     public User getUserById(int id) {
         return users.get(id);
@@ -19,7 +20,9 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User addUser(User user) {
-        users.put(user.getId(), user);
+        ++id;
+        user.setId(id);
+        users.put(id, user);
         return user;
     }
 }

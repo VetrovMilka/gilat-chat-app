@@ -17,29 +17,29 @@ public class Main {
         UserRepository userRepository = new UserRepositoryImpl();
         MessageRepository messageRepository = new MessageRepositoryImpl();
 
-        User user1 = (User) BaseEntityFactory.getBaseEntity(new UserFactory(1,
+        User user1 = (User) BaseEntityFactory.getBaseEntity(new UserFactory(
                 LocalDateTime.now(),
-                "test",
-                "test2",
-                "email",
-                "username",
-                "3290840923",
-                LocalDateTime.now(),
-                true));
-
-        User user2 = (User) BaseEntityFactory.getBaseEntity(new UserFactory(2,
-                LocalDateTime.now(),
-                "test3",
-                "test4",
-                "email2",
-                "username2",
-                "3290840924",
+                "Miroslav",
+                "Vetrov",
+                "miroslav.vetrov2003@gmail.com",
+                "v.vetrov.v",
+                "+37369000000",
                 LocalDateTime.now(),
                 true));
 
-        Message message = (Message) BaseEntityFactory.getBaseEntity(new MessageFactory(1,
+        User user2 = (User) BaseEntityFactory.getBaseEntity(new UserFactory(
                 LocalDateTime.now(),
-                "asdasd",
+                "Semion",
+                "Dubrovski",
+                "siemion@gmail.com",
+                "semion.d",
+                "+37379000000",
+                LocalDateTime.now(),
+                true));
+
+        Message message = (Message) BaseEntityFactory.getBaseEntity(new MessageFactory(
+                LocalDateTime.now(),
+                "Send me some money",
                 user1,
                 user2,
                 LocalDateTime.now()));
@@ -47,10 +47,10 @@ public class Main {
         System.out.println("\nAdded user: " + userRepository.addUser(user1));
         System.out.println("Added user: " + userRepository.addUser(user2));
         System.out.println("Added message: " + messageRepository.addMessage(message));
-        System.out.println("\nGet user with id 1: " + userRepository.getUserById(1));
-        System.out.println("Delete user with id 1: " + userRepository.deleteUserById(1));
-        System.out.println("Get deleted user with id 1: " + userRepository.getUserById(1));
-        System.out.println("\nDelete message with id 1: " + messageRepository.deleteMessageById(1));
-        System.out.println("Get deleted message with id 1: " + messageRepository.getMessageById(1));
+        System.out.println("\nGet user: " + userRepository.getUserById(1));
+        System.out.println("Delete user: " + userRepository.deleteUserById(1));
+        System.out.println("Get deleted user: " + userRepository.getUserById(1));
+        System.out.println("\nDelete message: " + messageRepository.deleteMessageById(1));
+        System.out.println("Get deleted message: " + messageRepository.getMessageById(1));
     }
 }

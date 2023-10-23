@@ -13,8 +13,8 @@ public class Message extends BaseEntity{
     private User receiver;
     private LocalDateTime seenAt;
 
-    public Message(int id, LocalDateTime createdAt, String content, User sender, User receiver, LocalDateTime seenAt) {
-        super(id, createdAt);
+    public Message(LocalDateTime createdAt, String content, User sender, User receiver, LocalDateTime seenAt) {
+        super(createdAt);
         this.content = content;
         this.sender = sender;
         this.receiver = receiver;
@@ -24,9 +24,10 @@ public class Message extends BaseEntity{
     @Override
     public String toString() {
         return "Message{" +
-                "content='" + content + '\'' +
-                ", sender username=" + ((sender == null) ? null : sender.getId()) +
-                ", receiver username=" + ((receiver == null) ? null : receiver.getId()) +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", sender username=" + ((sender == null) ? null : sender.getUsername()) +
+                ", receiver username=" + ((receiver == null) ? null : receiver.getUsername()) +
                 ", seenAt=" + seenAt +
                 '}';
     }

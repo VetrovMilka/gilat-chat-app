@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class MessageRepositoryImpl implements MessageRepository{
 
     private static final HashMap<Integer, Message> messages = new HashMap<>();
+    private static int id = 0;
 
     @Override
     public Message getMessageById(int id) {
@@ -20,7 +21,9 @@ public class MessageRepositoryImpl implements MessageRepository{
 
     @Override
     public Message addMessage(Message message) {
-        messages.put(message.getId(), message);
+        ++id;
+        message.setId(id);
+        messages.put(id, message);
         return message;
     }
 }

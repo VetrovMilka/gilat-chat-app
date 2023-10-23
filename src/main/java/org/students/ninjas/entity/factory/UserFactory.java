@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 public class UserFactory implements AbstractBaseEntityFactory {
-    private int id;
     private LocalDateTime createdAt;
     private String firstName;
     private String lastName;
@@ -19,6 +18,6 @@ public class UserFactory implements AbstractBaseEntityFactory {
     private boolean isOnline;
     @Override
     public BaseEntity createEntity() {
-        return new User(id, createdAt, firstName, lastName, email, username, phoneNumber, lastOnline, isOnline);
+        return new User(createdAt, firstName, lastName, email, username, phoneNumber, lastOnline, isOnline);
     }
 }

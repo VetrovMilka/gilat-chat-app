@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 public class MessageFactory implements AbstractBaseEntityFactory {
-    private int id;
     private LocalDateTime createdAt;
     private String content;
     private User sender;
@@ -17,6 +16,6 @@ public class MessageFactory implements AbstractBaseEntityFactory {
     private LocalDateTime seenAt;
     @Override
     public BaseEntity createEntity() {
-        return new Message(id, createdAt, content, sender, receiver, seenAt);
+        return new Message(createdAt, content, sender, receiver, seenAt);
     }
 }
