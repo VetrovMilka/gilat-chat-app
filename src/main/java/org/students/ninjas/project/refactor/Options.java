@@ -7,11 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@ToString
 public class Options {
 
+    private final Command command;
+
     private final List<String> options = new ArrayList<>();
+
     private String dir = System.getProperty("user.dir");
+
+    public Options(Command command) {
+        this.command = command;
+    }
 
     void setOptions(String command) {
         options.add(command);
@@ -19,5 +25,13 @@ public class Options {
 
     void setDir(String dir) {
         this.dir = dir;
+    }
+
+    @Override
+    public String toString() {
+        return "Options{" +
+                options +
+                ", dir='" + dir + '\'' +
+                '}';
     }
 }

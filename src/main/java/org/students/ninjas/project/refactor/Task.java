@@ -17,7 +17,8 @@ public class Task {
     private final Options options;
 
     public Result execute() throws IOException, InterruptedException {
-        ProcessBuilder builder = new ProcessBuilder(options.getOptions());
+        ProcessBuilder builder = new ProcessBuilder(String.valueOf(options.getCommand()));
+        builder.command(options.getOptions());
         builder.directory(new File(options.getDir()));
         Process process = builder.start();
         process.waitFor();

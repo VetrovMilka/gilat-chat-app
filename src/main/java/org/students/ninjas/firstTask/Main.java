@@ -51,7 +51,5 @@ public class Main {
         System.out.println("Get deleted user: " + userRepository.getUserById(1));
         System.out.println("\nDelete message: " + messageRepository.deleteMessageById(1));
         System.out.println("Get deleted message: " + messageRepository.getMessageById(1));
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     }
 }
