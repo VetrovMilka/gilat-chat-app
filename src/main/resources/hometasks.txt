@@ -1,0 +1,11 @@
+YAML ,XMl, JSON, Properties
+Player:
+id
+name
+score
+friends
+games: games_name + score + won\loss
+shortcuts + list of commands
+created
+updated
+online

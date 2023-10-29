@@ -1,6 +1,6 @@
-package org.students.ninjas.repository;
+package org.students.ninjas.firstTask.repository;
 
-import org.students.ninjas.entity.User;
+import org.students.ninjas.firstTask.entity.User;
 
 /**
  * The interface User repository.

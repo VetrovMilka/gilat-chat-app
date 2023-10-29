@@ -1,0 +1,33 @@
+{
+  "player": {
+    "id": 1,
+    "name": "John Doe",
+    "score": 750,
+    "friends": ["Alice", "Bob", "Charlie"],
+    "games": [
+      {
+        "name": "chess",
+        "score": 2,
+        "result": "won"
+      },
+      {
+        "name": "sudoku",
+        "score": 1,
+        "result": "loss"
+      },
+      {
+        "name": "monopoly",
+        "score": 3,
+        "result": "won"
+      }
+    ],
+    "shortcuts": {
+      "ctrl+s": "Save",
+      "ctrl+c": "Copy",
+      "ctrl+v": "Paste"
+    },
+    "created": "2023-01-15",
+    "updated": "2023-10-20",
+    "online": "2023-10-28"
+  }
+}

@@ -1,6 +1,6 @@
-package org.students.ninjas.repository;
+package org.students.ninjas.firstTask.repository;
 
-import org.students.ninjas.entity.Message;
+import org.students.ninjas.firstTask.entity.Message;
 
 /**
  * The interface Message repository.

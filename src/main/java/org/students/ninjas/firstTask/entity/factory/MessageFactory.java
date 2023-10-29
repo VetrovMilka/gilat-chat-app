@@ -1,9 +1,9 @@
-package org.students.ninjas.entity.factory;
+package org.students.ninjas.firstTask.entity.factory;
 
 import lombok.AllArgsConstructor;
-import org.students.ninjas.entity.BaseEntity;
-import org.students.ninjas.entity.Message;
-import org.students.ninjas.entity.User;
+import org.students.ninjas.firstTask.entity.BaseEntity;
+import org.students.ninjas.firstTask.entity.Message;
+import org.students.ninjas.firstTask.entity.User;
 
 import java.time.LocalDateTime;
 

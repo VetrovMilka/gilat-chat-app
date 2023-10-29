@@ -1,5 +1,6 @@
-package org.students.ninjas.entity;
+package org.students.ninjas.firstTask.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
+@Builder
 public class Message extends BaseEntity {
     private String content;
     private User sender;

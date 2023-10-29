@@ -1,6 +1,6 @@
-package org.students.ninjas.entity.factory;
+package org.students.ninjas.firstTask.entity.factory;
 
-import org.students.ninjas.entity.BaseEntity;
+import org.students.ninjas.firstTask.entity.BaseEntity;
 
 /**
  * The interface Abstract base entity factory.

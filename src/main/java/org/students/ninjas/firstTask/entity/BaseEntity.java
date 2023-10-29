@@ -1,4 +1,4 @@
-package org.students.ninjas.entity;
+package org.students.ninjas.firstTask.entity;
 
 import lombok.Getter;
 import lombok.Setter;
