@@ -1,15 +1,14 @@
 package org.students.ninjas.project.refactor;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TaskRunnerBuilder {
 
-    private final LinkedHashMap<Task, Options> tasks = new LinkedHashMap<>();
+    private final List<Task> tasks = new ArrayList<>();
 
-    TaskRunnerBuilder addTask(Task task, Options options) {
-        tasks.put(task, options);
+    TaskRunnerBuilder addTask(Task task) {
+        tasks.add(task);
         return this;
     }
 

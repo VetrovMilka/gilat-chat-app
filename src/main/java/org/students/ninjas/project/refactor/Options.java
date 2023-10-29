@@ -1,25 +1,23 @@
 package org.students.ninjas.project.refactor;
 
-import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.HashMap;
-import java.util.Map;
-@Builder
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@ToString
 public class Options {
-    private final Map<String, String> options = new HashMap<>();
 
-    void set(String key , Object value) {
-        options.put(key, value.toString());
+    private final List<String> options = new ArrayList<>();
+    private String dir = System.getProperty("user.dir");
+
+    void setOptions(String command) {
+        options.add(command);
     }
 
-    String get(String key) {
-        return options.get(key);
-    }
-
-    @Override
-    public String toString() {
-        return "Options{" +
-                "options=" + options +
-                '}';
+    void setDir(String dir) {
+        this.dir = dir;
     }
 }
