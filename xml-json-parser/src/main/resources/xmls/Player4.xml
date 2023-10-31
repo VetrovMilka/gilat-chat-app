@@ -1,0 +1,44 @@
+<player>
+    <id>1</id>
+    <name>John Doe</name>
+    <score>750</score>
+    <friends>
+        <friend>Alice</friend>
+        <friend>Bob</friend>
+        <friend>Charlie</friend>
+    </friends>
+    <games>
+        <game>
+            <name>chess</name>
+            <score>2</score>
+            <result>won</result>
+        </game>
+        <game>
+            <name>sudoku</name>
+            <score>1</score>
+            <result>loss</result>
+        </game>
+        <game>
+            <name>monopoly</name>
+            <score>3</score>
+            <result>won</result>
+        </game>
+    </games>
+    <shortcuts>
+        <shortcut>
+            <key>ctrl+s</key>
+            <value>Save</value>
+        </shortcut>
+        <shortcut>
+            <key>ctrl+c</key>
+            <value>Copy</value>
+        </shortcut>
+        <shortcut>
+            <key>ctrl+v</key>
+            <value>Paste</value>
+        </shortcut>
+    </shortcuts>
+    <created>2023-01-15</created>
+    <updated>2023-10-20</updated>
+    <online>2023-10-28</online>
+</player>
