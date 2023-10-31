@@ -13,6 +13,7 @@
         <module>oop-task</module>
         <module>cake</module>
         <module>process-builder</module>
+        <module>encryption</module>
     </modules>
 
     <properties>
