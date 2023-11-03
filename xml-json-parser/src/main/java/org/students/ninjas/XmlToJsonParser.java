@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class XmlToJsonParser {
 
@@ -24,7 +25,7 @@ public class XmlToJsonParser {
     }
 
     private static void convertXMLtoJSON(File xmlDirectory, File jsonDirectory) throws IOException {
-        List<File> XMLs = Arrays.stream(Objects.requireNonNull(xmlDirectory.listFiles())).toList();
+        List<File> XMLs = Arrays.stream(Objects.requireNonNull(xmlDirectory.listFiles())).collect(Collectors.toList());
         XmlMapper xmlMapper = new XmlMapper();
         ObjectMapper objectMapper = new ObjectMapper();
         for (File XML : XMLs) {

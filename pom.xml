@@ -15,6 +15,8 @@
         <module>process-builder</module>
         <module>encryption</module>
         <module>xml-json-parser</module>
+        <module>threads</module>
+        <module>test-hb-io-stream-security</module>
     </modules>
 
     <properties>
@@ -22,13 +24,5 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.28</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
 </project>
