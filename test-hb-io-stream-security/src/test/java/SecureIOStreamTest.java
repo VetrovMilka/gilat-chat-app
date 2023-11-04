@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -64,7 +65,8 @@ public class SecureIOStreamTest {
 
     @Test
     public void testEntireLogic() {
-        byte[] array = new byte[]{1, 2, 3, 4, 5, 6, 7, 8};
+        byte[] array = new byte[8];
+        new Random().nextBytes(array);
         byte[] result = new byte[8];
         for (int i = 0; i < array.length; i++) {
             secureIOStream.send(array[i]);
