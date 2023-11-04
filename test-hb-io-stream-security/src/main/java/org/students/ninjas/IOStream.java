@@ -30,7 +30,6 @@ public class IOStream {
             return bIn.read();
         }
         return -1;
-
     }
 
 }

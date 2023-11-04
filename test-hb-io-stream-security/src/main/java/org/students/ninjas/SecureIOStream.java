@@ -5,68 +5,112 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
-
-//TODO DES algorithm one hardcoded key -> encrypt 1 byte and send it
-//TODO DES algorithm one hardcoded key -> receive 1 byte and decrypt it
 public class SecureIOStream extends IOStream {
-    //    private OutputStream bOut;
-//    private InputStream bIn;
     private static Cipher encrypt;
     private static Cipher decrypt;
     private final FileInputStream fIn;
     private final FileOutputStream fOut;
+    private final SecretKey secretKey;
+    public static final String DES_CTR = "DES/CTR/NoPadding";
+
 
     public SecureIOStream(FileInputStream fIn, FileOutputStream fOut) {
         super();
         this.fIn = fIn;
         this.fOut = fOut;
         try {
-            SecretKey secretKey = SecretKeyHolder.SECRET_KEY_HOLDER;
-            decrypt = Cipher.getInstance("DES/ECB/PKCS5Padding");
-            encrypt = Cipher.getInstance("DES/ECB/PKCS5Padding");
-            encrypt.init(Cipher.ENCRYPT_MODE, secretKey);
-            decrypt.init(Cipher.DECRYPT_MODE, secretKey);
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
+            encrypt = Cipher.getInstance(DES_CTR);
+            decrypt = Cipher.getInstance(DES_CTR);
+
+            secretKey = SecretKeyHolder.SECRET_KEY_HOLDER;
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException(e);
         }
 
     }
 
     @Override
-    public void send(int value) throws IOException {
-        byte[] buffer;
+    public void send(int value) {
+        byte[] buffer = encrypt(new byte[]{(byte) value});
+        byte[] length = ByteBuffer.allocate(4).putInt(buffer.length).array();
         try {
-            buffer = encrypt.doFinal(new byte[]{(byte) value});
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
+            fOut.write(length);
+            fOut.write(buffer);
+            fOut.flush();
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        byte[] length = ByteBuffer.allocate(4).putInt(buffer.length).array();
-        this.fOut.write(length);
-        this.fOut.write(buffer);
-        this.fOut.flush();
     }
 
-    //TODO
     @Override
     public int receive() {
         try {
             DataInputStream dataInputStream = new DataInputStream(fIn);
             int length = dataInputStream.readInt();
-            byte[] buffer = dataInputStream.readNBytes(length);
-            buffer = decrypt.doFinal(buffer);
+            byte[] buffer = decrypt(dataInputStream.readNBytes(length));
             return buffer[0];
         } catch (IOException e) {
             return -1;
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
+        }
+    }
+
+    private IvParameterSpec generateIv() {
+        byte[] ivBytes = new byte[8];
+        new SecureRandom().nextBytes(ivBytes);
+        return new IvParameterSpec(ivBytes);
+    }
+
+    public byte[] encrypt(byte[] data) {
+        IvParameterSpec ivSpec = generateIv();
+        try {
+            encrypt.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
+            byte[] encrypted = encrypt.doFinal(data);
+            return combineIvAndEncryptedData(ivSpec.getIV(), encrypted);
+        } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException |
+                 BadPaddingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public byte[] decrypt(byte[] ivAndData) {
+        IvParameterSpec ivSpec = extractIvFromData(ivAndData);
+        byte[] data = extractDataWithoutIv(ivAndData);
+        try {
+            decrypt.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
+            return decrypt.doFinal(data);
+        } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException |
+                 BadPaddingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private byte[] combineIvAndEncryptedData(byte[] iv, byte[] encrypted) {
+        byte[] combined = new byte[iv.length + encrypted.length];
+        System.arraycopy(iv, 0, combined, 0, iv.length);
+        System.arraycopy(encrypted, 0, combined, iv.length, encrypted.length);
+        return combined;
+    }
+
+    private IvParameterSpec extractIvFromData(byte[] combined) {
+        byte[] iv = new byte[8];
+        System.arraycopy(combined, 0, iv, 0, iv.length);
+        return new IvParameterSpec(iv);
+    }
+
+    private byte[] extractDataWithoutIv(byte[] combined) {
+        byte[] data = new byte[combined.length - 8];
+        System.arraycopy(combined, 8, data, 0, data.length);
+        return data;
     }
 }
