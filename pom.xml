@@ -17,6 +17,7 @@
         <module>xml-json-parser</module>
         <module>threads</module>
         <module>test-hb-io-stream-security</module>
+        <module>maven-custom-mojo</module>
     </modules>
 
     <properties>
